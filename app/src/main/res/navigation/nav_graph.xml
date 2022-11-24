@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/createProfileFragment">
+
+    <fragment
+        android:id="@+id/createProfileFragment"
+        android:name="com.smartshopper.smart_shopper.ui.fragment.CreateProfileFragment"
+        android:label="fragment_create_profile"
+        tools:layout="@layout/fragment_create_profile" >
+        <action
+            android:id="@+id/action_createProfileFragment_to_productFragment"
+            app:destination="@id/productFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productFragment"
+        android:name="com.smartshopper.smart_shopper.ui.fragment.ProductFragment"
+        android:label="fragment_product"
+        tools:layout="@layout/fragment_product" />
+    <fragment
+        android:id="@+id/dealsFragment"
+        android:name="com.smartshopper.smart_shopper.ui.fragment.DealsFragment"
+        android:label="fragment_deals"
+        tools:layout="@layout/fragment_deals" />
+</navigation>
