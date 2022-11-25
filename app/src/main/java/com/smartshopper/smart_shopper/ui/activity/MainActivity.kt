@@ -2,12 +2,16 @@ package com.smartshopper.smart_shopper.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.google.android.material.tabs.TabLayout
 import com.smartshopper.smart_shopper.R
 import com.smartshopper.smart_shopper.databinding.ActivityMainBinding
+import com.smartshopper.smart_shopper.utils.SingleTon
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -31,18 +35,34 @@ class MainActivity : AppCompatActivity() {
             override fun onTabReselected(p0: TabLayout.Tab?) {}
             override fun onTabUnselected(p0: TabLayout.Tab?) {}
             override fun onTabSelected(p0: TabLayout.Tab?) {
-                showName()
-                when (tabs.selectedTabPosition) {
-                    0 -> {
-                        navController.navigate(R.id.productFragment)
+                if (SingleTon.isSetupAcc) {
+                    showName()
+                    when (tabs.selectedTabPosition) {
+                        0 -> {
+                            navController.navigate(R.id.productFragment)
+                        }
+                        1 -> {
+                            navController.navigate(R.id.dealsFragment)
+                        }
+                        3 -> {
+                            navController.navigate(R.id.groceryListFragment)
+                        }
+                        4 -> {
+                            navController.navigate(R.id.allProductFragment)
+                        }
                     }
-                    1 -> {
-                        navController.navigate(R.id.dealsFragment)
-                    }
-                    3 -> {
-                        navController.navigate(R.id.groceryListFragment)
-                    }
+                } else {
+                    MotionToast.createColorToast(
+                        this@MainActivity,
+                        "Warning",
+                        "Setup Profile first",
+                        MotionToastStyle.WARNING,
+                        MotionToast.GRAVITY_BOTTOM,
+                        MotionToast.LONG_DURATION,
+                        ResourcesCompat.getFont(this@MainActivity, R.font.proximanovacond_medium)
+                    )
                 }
+
             }
         })
     }
