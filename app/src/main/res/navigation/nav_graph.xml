@@ -24,4 +24,8 @@
         android:name="com.smartshopper.smart_shopper.ui.fragment.DealsFragment"
         android:label="fragment_deals"
         tools:layout="@layout/fragment_deals" />
+    <fragment
+        android:id="@+id/groceryListFragment"
+        android:name="com.smartshopper.smart_shopper.ui.fragment.GroceryListFragment"
+        android:label="GroceryListFragment" />
 </navigation>
