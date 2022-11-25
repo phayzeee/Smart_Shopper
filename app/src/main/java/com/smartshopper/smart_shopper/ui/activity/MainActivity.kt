@@ -44,6 +44,9 @@ class MainActivity : AppCompatActivity() {
                         1 -> {
                             navController.navigate(R.id.dealsFragment)
                         }
+                        2 -> {
+                            navController.navigate(R.id.buyAgainFragment)
+                        }
                         3 -> {
                             navController.navigate(R.id.groceryListFragment)
                         }

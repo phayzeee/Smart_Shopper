@@ -27,10 +27,16 @@
     <fragment
         android:id="@+id/groceryListFragment"
         android:name="com.smartshopper.smart_shopper.ui.fragment.GroceryListFragment"
+        tools:layout="@layout/fragment_grocery_list"
         android:label="GroceryListFragment" />
     <fragment
         android:id="@+id/allProductFragment"
         android:name="com.smartshopper.smart_shopper.ui.fragment.AllProductFragment"
         android:label="fragment_all_product"
         tools:layout="@layout/fragment_all_product" />
+    <fragment
+        android:id="@+id/buyAgainFragment"
+        android:name="com.smartshopper.smart_shopper.ui.fragment.BuyAgainFragment"
+        tools:layout="@layout/fragment_buy_again"
+        android:label="BuyAgainFragment" />
 </navigation>
