@@ -40,6 +40,7 @@ class BuyAgainFragment: Fragment() {
 
     private fun setupAdapter() {
         dateAdapter = PreviousGroceryAdapter(requireActivity())
+        dateAdapter.updateData(dateList)
         binding.rvPreviousGrocery.adapter = dateAdapter
     }
 

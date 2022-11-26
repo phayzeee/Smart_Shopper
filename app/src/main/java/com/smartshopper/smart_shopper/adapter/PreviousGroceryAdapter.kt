@@ -16,6 +16,12 @@ class PreviousGroceryAdapter(val context: Context) :
 
     var dateList = ArrayList<GroceryDate>()
 
+    fun updateData(list: ArrayList<GroceryDate>){
+        dateList.clear()
+        dateList.addAll(list)
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = RowPreviousGroceryBinding.bind(itemView)
     }
