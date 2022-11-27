@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity(tableName = "deals")
 data class DealsEntities(
-    @PrimaryKey(autoGenerate = true) val uid: Int,
+    @PrimaryKey(autoGenerate = true) val uid: Int? = null,
     @ColumnInfo(name = "storeName") var storeName: String? = null,
     @ColumnInfo(name = "product") var product: String? = null,
     @ColumnInfo(name = "deal") var deal: String? = null,

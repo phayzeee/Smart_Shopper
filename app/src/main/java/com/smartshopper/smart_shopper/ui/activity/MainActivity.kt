@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity() {
             AppDatabase::class.java, Constant.GROCERY
         ).fallbackToDestructiveMigration()
             .allowMainThreadQueries().build()
-        if(!db.Dao().getUser().name.isNullOrEmpty()){
+
+        if (db.Dao().getUser() != null && (!db.Dao().getUser().name.isNullOrEmpty())) {
             navController.navigate(R.id.productFragment)
             showName()
         }
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             override fun onTabReselected(p0: TabLayout.Tab?) {}
             override fun onTabUnselected(p0: TabLayout.Tab?) {}
             override fun onTabSelected(p0: TabLayout.Tab?) {
-                if (SingleTon.isSetupAcc) {
+                if (db.Dao().getUser() != null && (!db.Dao().getUser().name.isNullOrEmpty())) {
                     showName()
                     when (tabs.selectedTabPosition) {
                         0 -> {
@@ -85,6 +86,7 @@ class MainActivity : AppCompatActivity() {
     fun showName() {
         binding.name.isVisible = true
         binding.starImg.isVisible = false
-        binding.name.text = db.Dao().getUser().name?.substring(0, 1)
+        binding.name.text =
+            db.Dao().getUser().name?.substring(0, 1)?.substringAfter("")?.substring(0, 1)
     }
 }

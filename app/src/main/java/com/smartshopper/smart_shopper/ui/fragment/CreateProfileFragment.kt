@@ -50,7 +50,6 @@ class CreateProfileFragment : Fragment() {
         binding.submitBtn.setOnClickListener {
             if (validation()) {
                 SingleTon.isSetupAcc = true
-                (activity as MainActivity).showName()
                 db.Dao().adduser(
                     UserEntities(
                         1,
@@ -60,6 +59,7 @@ class CreateProfileFragment : Fragment() {
                     )
                 ).apply {
                     findNavController().navigate(R.id.action_createProfileFragment_to_productFragment)
+                    (activity as MainActivity).showName()
                 }
             }
         }

@@ -7,16 +7,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.smartshopper.smart_shopper.R
+import com.smartshopper.smart_shopper.database.ProductEntities
 import com.smartshopper.smart_shopper.databinding.ListRowBinding
 import com.smartshopper.smart_shopper.model.products
 
 class ProductAdapter(val context: Context) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
-    var productList = ArrayList<products>()
+    var productList = ArrayList<ProductEntities>()
 
 
-    fun updateData(list : ArrayList<products>){
+    fun updateData(list : ArrayList<ProductEntities>){
         productList.clear()
         productList.addAll(list)
         notifyDataSetChanged()

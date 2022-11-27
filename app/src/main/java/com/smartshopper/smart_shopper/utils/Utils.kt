@@ -19,4 +19,16 @@ object Utils {
             ResourcesCompat.getFont(context, R.font.proximanovacond_medium)
         )
     }
+
+    fun successToast(context: Context,message: String){
+        MotionToast.createColorToast(
+            context as Activity,
+            "Success",
+            message,
+            MotionToastStyle.SUCCESS,
+            MotionToast.GRAVITY_BOTTOM,
+            MotionToast.LONG_DURATION,
+            ResourcesCompat.getFont(context, R.font.proximanovacond_medium)
+        )
+    }
 }

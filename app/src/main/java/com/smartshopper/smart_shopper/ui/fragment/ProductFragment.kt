@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.room.Room
 import com.smartshopper.smart_shopper.database.AppDatabase
+import com.smartshopper.smart_shopper.database.ProductEntities
 import com.smartshopper.smart_shopper.databinding.FragmentProductBinding
 import com.smartshopper.smart_shopper.utils.Constant
+import com.smartshopper.smart_shopper.utils.Utils
 
 class ProductFragment : Fragment() {
 
@@ -28,8 +30,21 @@ class ProductFragment : Fragment() {
         initListener()
     }
 
-    private fun initListener() {
-
+    private fun initListener() = binding.run {
+        addGroceryBtn.setOnClickListener {
+            if (validation()) {
+                val data = ProductEntities(
+                    storeName = storeNameTv.text.toString(),
+                    productName = productNameTv.text.toString(),
+                    price = priceTv.text.toString()
+                )
+                db.Dao().insertProduct(data)
+                storeNameTv.setText("")
+                productNameTv.setText("")
+                priceTv.setText("")
+                Utils.successToast(requireActivity(),"Successfully added")
+            }
+        }
     }
 
     private fun setupDb() {
@@ -38,6 +53,26 @@ class ProductFragment : Fragment() {
             AppDatabase::class.java, Constant.GROCERY
         ).fallbackToDestructiveMigration()
             .allowMainThreadQueries().build()
+    }
+
+    private fun validation(): Boolean = binding.run {
+        return when {
+            storeNameTv.text.isEmpty() -> {
+                Utils.errorToast(requireActivity(), "Store Name must not be empty")
+                false
+            }
+            productNameTv.text.isEmpty() -> {
+                Utils.errorToast(requireActivity(), "Product Name must not be empty")
+                false
+            }
+            priceTv.text.isEmpty() -> {
+                Utils.errorToast(requireActivity(), "Price must not be empty")
+                false
+            }
+            else -> {
+                true
+            }
+        }
     }
 
 }
