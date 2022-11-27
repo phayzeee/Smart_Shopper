@@ -9,7 +9,7 @@ import androidx.room.Query
 interface Dao {
 
     @Query("SELECT * FROM products ORDER BY uid")
-    fun getProducts(): ArrayList<ProductEntities>
+    fun getProducts(): List<ProductEntities>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertProduct(productEntities: ProductEntities)
@@ -18,5 +18,12 @@ interface Dao {
     fun insertDeal(dealsEntities: DealsEntities)
 
     @Query("SELECT * FROM deals ORDER BY uid")
-    fun getDeals(): ArrayList<DealsEntities>
+    fun getDeals(): List<DealsEntities>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun adduser(userEntities: UserEntities)
+
+    @Query("SELECT * FROM user ORDER BY uid")
+    fun getUser(): UserEntities
+
 }

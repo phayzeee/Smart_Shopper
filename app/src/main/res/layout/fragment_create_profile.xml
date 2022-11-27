@@ -30,6 +30,7 @@
             android:textSize="15sp" />
 
         <EditText
+            android:id="@+id/nameTv"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/rouned_stroke"
@@ -47,6 +48,7 @@
             android:textSize="15sp" />
 
         <EditText
+            android:id="@+id/stateTv"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/rouned_stroke"
@@ -64,6 +66,7 @@
             android:textSize="15sp" />
 
         <EditText
+            android:id="@+id/codeTv"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/rouned_stroke"
