@@ -22,6 +22,12 @@ class PreviousGroceryAdapter(val context: Context) :
         notifyDataSetChanged()
     }
 
+    private var onClickListener: ((GroceryDate, Int) -> Unit)? = null
+
+    fun setOnDateClickListener(listener: (GroceryDate, Int) -> Unit) {
+        onClickListener = listener
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = RowPreviousGroceryBinding.bind(itemView)
     }
@@ -36,6 +42,10 @@ class PreviousGroceryAdapter(val context: Context) :
         var currentItem = dateList[position]
         with(holder){
             binding.tvDate.text = currentItem.date
+
+            binding.tvDate.setOnClickListener {
+                onClickListener?.invoke(currentItem, position)
+            }
         }
     }
 

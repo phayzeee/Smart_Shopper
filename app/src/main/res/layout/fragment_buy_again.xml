@@ -13,15 +13,16 @@
         android:background="@color/light_bg_color"
         android:orientation="vertical"
         android:paddingHorizontal="15dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:paddingTop="23dp">
 
         <TextView
+            android:id="@+id/tv_heading_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:text="8 Aug 2022"
+            tools:text="8 Aug 2022"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -34,64 +35,35 @@
             android:textSize="15sp" />
 
         <EditText
+            android:id="@+id/et_product_name"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/rouned_stroke"
             android:hint="Enter Product Name"
-            android:inputType="textAutoComplete"
+            android:textColor="@color/black"
+            android:enabled="false"
             android:paddingStart="12dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Quantity"
+            android:text="Price"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
         <EditText
+            android:id="@+id/et_quantity"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/rouned_stroke"
-            android:hint="Enter Quantity"
-            android:inputType="textAutoComplete"
-            android:paddingStart="12dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Product"
+            android:hint="Enter Price"
             android:textColor="@color/black"
-            android:textSize="15sp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/rouned_stroke"
-            android:hint="Enter Product Name"
-            android:inputType="textAutoComplete"
+            android:enabled="false"
             android:paddingStart="12dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Quantity"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/rouned_stroke"
-            android:hint="Enter Quantity"
-            android:inputType="textAutoComplete"
-            android:paddingStart="12dp" />
 
         <TextView
             android:id="@+id/addGroceryBtn"
@@ -101,9 +73,10 @@
             android:gravity="center"
             android:layout_marginTop="40dp"
             android:layout_marginStart="80dp"
+            android:textAlignment="center"
             android:layout_marginEnd="80dp"
             android:padding="3dp"
-            android:text="Add Items to \n Grocery List"
+            android:text="Add Items to \n Grocery Cart"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -114,7 +87,7 @@
         android:id="@+id/llPreviousList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         android:orientation="vertical">
 
         <TextView
