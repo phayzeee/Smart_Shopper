@@ -7,10 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smartshopper.smart_shopper.R
 import com.smartshopper.smart_shopper.database.DealsEntities
-import com.smartshopper.smart_shopper.databinding.ListRowBinding
 import com.smartshopper.smart_shopper.databinding.RowDealsBinding
-import com.smartshopper.smart_shopper.model.Deals
-import com.smartshopper.smart_shopper.model.products
 
 class DealAdapter(val context: Context) :
     RecyclerView.Adapter<DealAdapter.ViewHolder>() {

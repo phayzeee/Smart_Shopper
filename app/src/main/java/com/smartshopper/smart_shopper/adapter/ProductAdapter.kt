@@ -4,12 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.smartshopper.smart_shopper.R
 import com.smartshopper.smart_shopper.database.ProductEntities
 import com.smartshopper.smart_shopper.databinding.ListRowBinding
-import com.smartshopper.smart_shopper.model.products
 
 class ProductAdapter(val context: Context) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
@@ -36,7 +34,7 @@ class ProductAdapter(val context: Context) :
             with(holder) {
                binding.productNameTv.text = currentItem.productName
                binding.storeNameTv.text = currentItem.storeName
-               binding.priceTv.text = "$"+currentItem.price
+               binding.priceTv.text = currentItem.price
             }
     }
 

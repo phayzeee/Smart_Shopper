@@ -12,7 +12,13 @@ interface Dao {
     fun getProducts(): List<ProductEntities>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertProduct(productEntities: ProductEntities)
+    fun insertProduct(productEntities: List<ProductEntities>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertGrocery(productEntities: GroceryEntities)
+
+    @Query("SELECT * FROM grocery ORDER BY uid")
+    fun getGrocery(): List<GroceryEntities>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDeal(dealsEntities: DealsEntities)

@@ -4,12 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.room.Room
 import com.smartshopper.smart_shopper.database.AppDatabase
 import com.smartshopper.smart_shopper.database.DealsEntities
 import com.smartshopper.smart_shopper.databinding.FragmentDealsBinding
+import com.smartshopper.smart_shopper.model.Deals
+import com.smartshopper.smart_shopper.model.Product
+import com.smartshopper.smart_shopper.model.ProductDeal
+import com.smartshopper.smart_shopper.model.Store
 import com.smartshopper.smart_shopper.utils.Constant
 import com.smartshopper.smart_shopper.utils.Utils
 
@@ -17,6 +22,7 @@ import com.smartshopper.smart_shopper.utils.Utils
 class DealsFragment : Fragment() {
     lateinit var binding: FragmentDealsBinding
     lateinit var db: AppDatabase
+    var dealsList = ArrayList<Deals>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,6 +33,7 @@ class DealsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setData()
         setupDb()
         initListener()
         setupSpinner()
@@ -47,17 +54,8 @@ class DealsFragment : Fragment() {
                 productNameTv.setText("")
                 dealTv.setText("")
                 durationTv.setText("")
-
                 Utils.successToast(requireActivity(), "Successfully added")
             }
-
-        }
-
-        addMoreBtn.setOnClickListener {
-            storeNameTv.setText("")
-            productNameTv.setText("")
-            dealTv.setText("")
-            durationTv.setText("")
         }
     }
 
@@ -75,7 +73,7 @@ class DealsFragment : Fragment() {
         val store = ArrayList<String>()
         store.clear()
         store.add("Select Store")
-        db.Dao().getDeals().mapIndexed { index, dealsEntities ->
+        dealsList.mapIndexed { index, dealsEntities ->
             store.add(dealsEntities.storeName.toString())
         }
         val dataAdapter: ArrayAdapter<String> =
@@ -85,18 +83,20 @@ class DealsFragment : Fragment() {
         binding.spinner.adapter = dataAdapter
 
 
-        //setup product Name
-        val product = ArrayList<String>()
-        product.clear()
-        product.add("Select Product")
-        db.Dao().getDeals().mapIndexed { index, dealsEntities ->
-            product.add(dealsEntities.product.toString())
-        }
-        val dataAdapter1: ArrayAdapter<String> =
-            ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_item, product)
+        binding.spinner.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View?,
+                position: Int,
+                id: Long
+            ) {
+                setupProductSp(store[position])
+            }
 
-        dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinner1.adapter = dataAdapter1
+            override fun onNothingSelected(parentView: AdapterView<*>?) {}
+        }
+
     }
 
     private fun validation(): Boolean = binding.run {
@@ -120,6 +120,74 @@ class DealsFragment : Fragment() {
             else -> {
                 true
             }
+        }
+    }
+
+
+    private fun setData(){
+        dealsList.clear()
+        val product1 = arrayListOf(
+            ProductDeal(" 4 Coca-Cola Soda Pop Classic", "$15.6","2 Dec - 5 Dec"),
+            ProductDeal("1 Lobster & 2Crab", "$25.6","1 Dec - 10 Dec")
+        )
+        dealsList.add(Deals("Albertsons", product1))
+        val product2= arrayListOf(
+            ProductDeal("10 Dinner Rolls", "$5.49","1 jan 23 - 10 jan 23"),
+            ProductDeal("2 Bread", "$3","1 jan 23 - 20 jan 23"),
+            ProductDeal("3 Vanilma  Cupcakes", "$8","1 Dec - 10 Dec")
+        )
+        dealsList.add(Deals("Ahold Delhaize", product2))
+        val product4= arrayListOf(
+            ProductDeal("LEGO TOY Complete set", "$50.1","1 Dec - 10 Dec"),
+        )
+        dealsList.add(Deals("Bashas'", product4))
+        val product5 = arrayListOf(
+            ProductDeal("Mazola Corn Oil 2 cane", "$7","2 Dec - 4 Dec"),
+            ProductDeal("Dave's Killer Bread and 3 packet eggs", "$10","5 Dec - 30 Dec"),
+            ProductDeal("Sevan Cupcakes 28 oz", "$2","1 feb 23 - 2 feb 23")
+        )
+        dealsList.add(Deals("Smart & Final'", product5))
+    }
+
+    private fun setupProductSp(store: String){
+        //setup product Name
+        val productList = ArrayList<ProductDeal>()
+        val product = ArrayList<String>()
+        product.clear()
+        productList.clear()
+        product.add("Select Product")
+        dealsList.mapIndexed { index, dealsEntities ->
+            if(store == dealsEntities.storeName){
+                productList.addAll(dealsEntities.product)
+                dealsEntities.product.mapIndexed { index, productDeal ->
+                    product.add(productDeal.name.toString())
+                }
+            }
+        }
+        val dataAdapter1: ArrayAdapter<String> =
+            ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_item, product)
+
+        dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinner1.adapter = dataAdapter1
+
+
+        binding.spinner1.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View?,
+                position: Int,
+                id: Long
+            ) {
+                productList.mapIndexed { index, productDeal ->
+                    if(productDeal.name==product[position]){
+                        binding.dealTv.setText(productDeal.deal)
+                        binding.durationTv.setText(productDeal.duration)
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {}
         }
     }
 }

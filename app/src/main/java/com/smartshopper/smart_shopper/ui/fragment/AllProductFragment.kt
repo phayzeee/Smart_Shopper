@@ -12,8 +12,6 @@ import com.smartshopper.smart_shopper.database.AppDatabase
 import com.smartshopper.smart_shopper.database.DealsEntities
 import com.smartshopper.smart_shopper.database.ProductEntities
 import com.smartshopper.smart_shopper.databinding.FragmentAllProductBinding
-import com.smartshopper.smart_shopper.model.Deals
-import com.smartshopper.smart_shopper.model.products
 import com.smartshopper.smart_shopper.utils.Constant
 
 class AllProductFragment : Fragment() {
@@ -21,8 +19,6 @@ class AllProductFragment : Fragment() {
     lateinit var binding: FragmentAllProductBinding
     private lateinit var productAdapter: ProductAdapter
     lateinit var dealAdapter: DealAdapter
-    var product = ArrayList<products>()
-    var deals = ArrayList<Deals>()
     lateinit var db: AppDatabase
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,12 +57,5 @@ class AllProductFragment : Fragment() {
     }
 
     private fun setData() {
-        product.clear()
-        product.add(products("Imtiaz", "Polo Shirts", "1200"))
-        product.add(products("Chase", "Niki Shoes", "10000"))
-
-        deals.clear()
-        deals.add(Deals("Imtiaz", "Polo Shirts", "2 shirts in 1500", "1 Dec - 10 Dec"))
-        deals.add(Deals("Chase", "Niki Shoes", "3 shoes in 15000", "1 Dec - 10 Dec"))
     }
 }
