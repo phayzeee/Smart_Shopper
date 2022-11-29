@@ -41,6 +41,7 @@ class GroceryListFragment : Fragment() {
         setupDb()
         setupAdapter()
         initListener()
+        groceryButton()
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -48,26 +49,15 @@ class GroceryListFragment : Fragment() {
 
 
         addGroceryBtn.setOnClickListener {
-//            product.clear()
-//            db.Dao().getGrocery().mapIndexed { index, data ->
-//                product.add(
-//                    ProductEntities(
-//                        storeName = data.storeName,
-//                        productName = data.productName,
-//                        price = data.price,
-//                        quantity = data.quantity
-//                    )
-//                )
-//            }
-//            db.Dao().insertProduct(product.toList())
-//            Utils.successToast(requireActivity(), "Added Successfully")
             if (db.Dao().getGrocery().isNotEmpty()) {
                 addGroceryProduct()
+                db.Dao().getGrocery().mapIndexed { index, groceryEntities ->
+                    db.Dao().deleteGrocery(groceryEntities)
+                }
+                setupAdapter()
             } else {
                 Utils.errorToast(requireActivity(), "No Grocery Found")
             }
-
-
         }
 
         llAddAnotherProduct.setOnClickListener {
@@ -84,10 +74,7 @@ class GroceryListFragment : Fragment() {
             } else {
                 Utils.errorToast(requireActivity(), "No Grocery Found")
             }
-
-//            etProductName.setText("")
-//            etQuantity.setText("")
-
+            groceryButton()
         }
     }
 
@@ -144,5 +131,15 @@ class GroceryListFragment : Fragment() {
 
         findNavController().navigate(R.id.allProductFragment)
         (activity as MainActivity).selectProductTab(4)
+    }
+
+    private fun groceryButton(){
+        if(groceryListAdapter.groceryItemList.isNullOrEmpty()){
+            binding.addGroceryBtn.isEnabled = false
+            binding.addGroceryBtn.alpha = 0.2f
+        } else {
+            binding.addGroceryBtn.isEnabled = true
+            binding.addGroceryBtn.alpha = 1f
+        }
     }
 }

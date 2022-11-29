@@ -108,12 +108,13 @@ class ProductFragment : Fragment() {
         val product2= arrayListOf(
             Product("Dinner Rolls", "$1.49"),
             Product("Bread", "$2"),
-            Product("Vanilma  Cupcakes", "$5")
+            Product("Vanila Cupcakes", "$5")
         )
         storeList.add(Store("Ahold Delhaize", product2))
         val product3= arrayListOf(
             Product("LEGO TOY", "$20.1"),
             Product("Lobster & Crab", "$10.6"),
+            Product("Vanila Cupcakes", "$8")
         )
         storeList.add(Store("Kroger", product3))
         val product4= arrayListOf(

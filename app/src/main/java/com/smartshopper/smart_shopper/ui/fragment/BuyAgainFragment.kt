@@ -54,25 +54,25 @@ class BuyAgainFragment : Fragment() {
                 0 -> {
                     tvHeadingDate.text = "8 Aug 2022"
                     etProductName.setText("Parsley")
-                    etQuantity.setText("2 pounds")
+                    etQuantity.setText("2")
                     priceOf = "$8"
                 }
                 1 -> {
                     tvHeadingDate.text = "20 Sep 2022"
                     etProductName.setText("Eggs")
-                    etQuantity.setText("3 pounds")
+                    etQuantity.setText("3")
                     priceOf = "$23"
                 }
                 2 -> {
                     tvHeadingDate.text = "3 Oct 2022"
                     etProductName.setText("Meat")
-                    etQuantity.setText("5 pounds")
+                    etQuantity.setText("5")
                     priceOf = "$15"
                 }
                 3 -> {
                     tvHeadingDate.text = "15 Nov 2022"
                     etProductName.setText("Milk")
-                    etQuantity.setText("4 pounds")
+                    etQuantity.setText("4")
                     priceOf = "$32"
                 }
             }
