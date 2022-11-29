@@ -61,9 +61,9 @@ class GroceryListFragment : Fragment() {
 //            }
 //            db.Dao().insertProduct(product.toList())
 //            Utils.successToast(requireActivity(), "Added Successfully")
-            if(db.Dao().getGrocery().isNotEmpty()){
+            if (db.Dao().getGrocery().isNotEmpty()) {
                 addGroceryProduct()
-            }else{
+            } else {
                 Utils.errorToast(requireActivity(), "No Grocery Found")
             }
 
@@ -140,6 +140,7 @@ class GroceryListFragment : Fragment() {
                 )
             )
         }
+        db.Dao().insertProduct(product.toList())
 
         findNavController().navigate(R.id.allProductFragment)
         (activity as MainActivity).selectProductTab(4)
