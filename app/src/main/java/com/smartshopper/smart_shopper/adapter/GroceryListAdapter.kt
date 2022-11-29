@@ -1,16 +1,16 @@
 package com.smartshopper.smart_shopper.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smartshopper.smart_shopper.R
 import com.smartshopper.smart_shopper.database.GroceryEntities
-import com.smartshopper.smart_shopper.database.ProductEntities
 import com.smartshopper.smart_shopper.databinding.RowGroceryListBinding
-import com.smartshopper.smart_shopper.model.GroceryDate
-import com.smartshopper.smart_shopper.model.GroceryList
 
 class GroceryListAdapter(val context: Context) :
     RecyclerView.Adapter<GroceryListAdapter.ViewHolder>() {
@@ -33,7 +33,7 @@ class GroceryListAdapter(val context: Context) :
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: GroceryListAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GroceryListAdapter.ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         var currentItem = groceryItemList[position]
         with(holder){
             binding.etProductName.setText(currentItem.productName)
@@ -43,6 +43,15 @@ class GroceryListAdapter(val context: Context) :
                 binding.etQuantity.setText(currentItem.quantity)
             }
 
+            binding.etQuantity.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+                override fun afterTextChanged(p0: Editable?) {
+                    groceryItemList[position].quantity = p0.toString()
+                }
+            })
         }
     }
 
