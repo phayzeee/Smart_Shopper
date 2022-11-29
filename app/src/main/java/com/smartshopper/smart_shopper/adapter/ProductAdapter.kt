@@ -1,5 +1,6 @@
 package com.smartshopper.smart_shopper.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,7 @@ class ProductAdapter(val context: Context) :
         return ViewHolder(v)
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onBindViewHolder(holder: ProductAdapter.ViewHolder, position: Int) {
         val currentItem = productList[position]
             with(holder) {

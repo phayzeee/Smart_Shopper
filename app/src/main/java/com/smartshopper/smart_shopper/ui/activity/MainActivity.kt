@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         binding.name.isVisible = true
         binding.starImg.isVisible = false
         binding.name.text =
-            db.Dao().getUser().name?.substring(0, 1)?.substringAfter("")?.substring(0, 1)
+            db.Dao().getUser().name?.substring(0, 1)?.substringAfter(" ")?.substring(0, 1)
     }
 
     fun selectProductTab(position : Int){
