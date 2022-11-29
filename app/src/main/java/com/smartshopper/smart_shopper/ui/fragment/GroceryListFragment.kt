@@ -9,13 +9,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import com.smartshopper.smart_shopper.R
 import com.smartshopper.smart_shopper.adapter.GroceryListAdapter
-import com.smartshopper.smart_shopper.adapter.PreviousGroceryAdapter
 import com.smartshopper.smart_shopper.database.AppDatabase
-import com.smartshopper.smart_shopper.database.DealsEntities
 import com.smartshopper.smart_shopper.database.GroceryEntities
 import com.smartshopper.smart_shopper.database.ProductEntities
 import com.smartshopper.smart_shopper.databinding.FragmentGroceryListBinding
-import com.smartshopper.smart_shopper.model.GroceryList
 import com.smartshopper.smart_shopper.ui.activity.MainActivity
 import com.smartshopper.smart_shopper.utils.Constant
 import com.smartshopper.smart_shopper.utils.Utils

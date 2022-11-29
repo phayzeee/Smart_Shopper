@@ -12,9 +12,7 @@ import com.smartshopper.smart_shopper.database.AppDatabase
 import com.smartshopper.smart_shopper.database.DealsEntities
 import com.smartshopper.smart_shopper.databinding.FragmentDealsBinding
 import com.smartshopper.smart_shopper.model.Deals
-import com.smartshopper.smart_shopper.model.Product
 import com.smartshopper.smart_shopper.model.ProductDeal
-import com.smartshopper.smart_shopper.model.Store
 import com.smartshopper.smart_shopper.utils.Constant
 import com.smartshopper.smart_shopper.utils.Utils
 
@@ -44,7 +42,7 @@ class DealsFragment : Fragment() {
             if(validation()){
                 val data = DealsEntities(
                     storeName = spinner.selectedItem.toString(),
-                    product = productNameTv.text.toString(),
+                    product = spinner1.selectedItem.toString(),
                     deal = dealTv.text.toString(),
                     duration = durationTv.text.toString()
                 )

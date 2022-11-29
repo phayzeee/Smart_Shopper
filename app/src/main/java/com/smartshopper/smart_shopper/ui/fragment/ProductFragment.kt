@@ -59,6 +59,12 @@ class ProductFragment : Fragment() {
                 (activity as MainActivity).selectProductTab(3)
             }
         }
+
+        addMoreBtn.setOnClickListener {
+            setupSpinner()
+            setupProductSp("")
+            priceTv.setText("")
+        }
     }
 
     private fun setupDb() {

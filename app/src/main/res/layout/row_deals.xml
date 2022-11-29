@@ -19,21 +19,21 @@
             android:id="@+id/storeNameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Store Name"
-            android:textSize="20dp"
-            android:fontFamily="@font/montserrat_bold"/>
+            android:textColor="@color/black"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/productNameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Product Name"
             android:layout_below="@id/storeNameTv"
             android:layout_marginTop="5dp"
-            android:textSize="15sp"
-            android:fontFamily="@font/montserrat_regular"/>
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Product Name"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/dealTv"
@@ -51,8 +51,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/productNameTv"
-            android:layout_marginTop="5dp"
             android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/montserrat_regular"
             android:text="Deal Name"
             android:textColor="@color/black"
