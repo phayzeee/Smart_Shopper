@@ -113,7 +113,7 @@ class GroceryListFragment : Fragment() {
 
         for (i in 0 until data.size) {
             for (j in 0 until data.size) {
-                if (i == j) {
+                if (data[i].productName == data[j].productName) {
                     if (data[i].price?.replace("$", "")?.toFloat()!! <= data[j].price?.replace(
                             "$",
                             ""
@@ -122,7 +122,7 @@ class GroceryListFragment : Fragment() {
                     ) {
                         grocery.add(data[i])
                     }
-                } else if (i != j) {
+                } else if (data[i].productName != data[j].productName) {
                     grocery.add(data[i])
                 }
             }
