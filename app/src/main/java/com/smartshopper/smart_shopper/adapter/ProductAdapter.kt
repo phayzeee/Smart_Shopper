@@ -37,6 +37,11 @@ class ProductAdapter(val context: Context) :
                binding.productNameTv.text = currentItem.productName
                binding.storeNameTv.text = currentItem.storeName
                binding.priceTv.text = currentItem.price
+                if(currentItem.price.isNullOrEmpty()){
+                    binding.quantityTv.text = "1 quantity"
+                }else{
+                    binding.quantityTv.text = currentItem.quantity+" quantities"
+                }
             }
     }
 

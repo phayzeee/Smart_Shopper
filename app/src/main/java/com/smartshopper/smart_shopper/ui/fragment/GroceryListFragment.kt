@@ -107,18 +107,18 @@ class GroceryListFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     private fun addGroceryProduct() {
-        val data = groceryListAdapter.groceryItemList.filter { it.quantity!!.isNotEmpty() }
+        val data = groceryListAdapter.groceryItemList
         grocery.clear()
 
 
-        for (i in 1..data.size) {
-            for (j in 1..data.size) {
+        for (i in 0 until data.size) {
+            for (j in 0 until data.size) {
                 if (i == j) {
-                    if (data[i].price?.replace("$", "")?.toInt()!! <= data[j].price?.replace(
+                    if (data[i].price?.replace("$", "")?.toFloat()!! <= data[j].price?.replace(
                             "$",
                             ""
                         )
-                            ?.toInt()!!
+                            ?.toFloat()!!
                     ) {
                         grocery.add(data[i])
                     }
@@ -128,7 +128,9 @@ class GroceryListFragment : Fragment() {
             }
         }
 
-        grocery.mapIndexed { index, data ->
+
+        val filter = grocery.distinct()
+        filter.mapIndexed { index, data ->
             product.add(
                 ProductEntities(
                     storeName = data.storeName,
