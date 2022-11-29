@@ -96,21 +96,20 @@ class GroceryListFragment : Fragment() {
     private fun addGroceryProduct() {
         val data = groceryListAdapter.groceryItemList
         grocery.clear()
-
+        product.clear()
+        grocery.addAll(data)
 
         for (i in 0 until data.size) {
-            for (j in 0 until data.size) {
+            for (j in i until data.size) {
                 if (data[i].productName == data[j].productName) {
-                    if (data[i].price?.replace("$", "")?.toFloat()!! <= data[j].price?.replace(
+                    if (data[i].price?.replace("$", "")?.toFloat()!! < data[j].price?.replace(
                             "$",
                             ""
                         )
                             ?.toFloat()!!
                     ) {
-                        grocery.add(data[i])
+                        grocery.remove(data[j])
                     }
-                } else if (data[i].productName != data[j].productName) {
-                    grocery.add(data[i])
                 }
             }
         }
@@ -131,6 +130,7 @@ class GroceryListFragment : Fragment() {
 
         findNavController().navigate(R.id.allProductFragment)
         (activity as MainActivity).selectProductTab(4)
+
     }
 
     private fun groceryButton(){

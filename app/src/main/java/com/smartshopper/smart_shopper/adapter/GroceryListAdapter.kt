@@ -12,6 +12,7 @@ import com.smartshopper.smart_shopper.R
 import com.smartshopper.smart_shopper.database.GroceryEntities
 import com.smartshopper.smart_shopper.databinding.RowGroceryListBinding
 
+
 class GroceryListAdapter(val context: Context) :
     RecyclerView.Adapter<GroceryListAdapter.ViewHolder>() {
 
