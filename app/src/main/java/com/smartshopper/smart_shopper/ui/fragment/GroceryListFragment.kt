@@ -122,7 +122,7 @@ class GroceryListFragment : Fragment() {
                     ) {
                         grocery.add(data[i])
                     }
-                } else if (1 != j) {
+                } else if (i != j) {
                     grocery.add(data[i])
                 }
             }
