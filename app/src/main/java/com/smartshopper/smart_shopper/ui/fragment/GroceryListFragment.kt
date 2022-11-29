@@ -8,9 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import com.smartshopper.smart_shopper.R
+import com.smartshopper.smart_shopper.adapter.GroceryListAdapter
+import com.smartshopper.smart_shopper.adapter.PreviousGroceryAdapter
 import com.smartshopper.smart_shopper.database.AppDatabase
+import com.smartshopper.smart_shopper.database.DealsEntities
+import com.smartshopper.smart_shopper.database.GroceryEntities
 import com.smartshopper.smart_shopper.database.ProductEntities
 import com.smartshopper.smart_shopper.databinding.FragmentGroceryListBinding
+import com.smartshopper.smart_shopper.model.GroceryList
 import com.smartshopper.smart_shopper.ui.activity.MainActivity
 import com.smartshopper.smart_shopper.utils.Constant
 import com.smartshopper.smart_shopper.utils.Utils
@@ -19,6 +24,7 @@ class GroceryListFragment : Fragment() {
 
     lateinit var binding: FragmentGroceryListBinding
     lateinit var db: AppDatabase
+    lateinit var groceryListAdapter: GroceryListAdapter
     var product = ArrayList<ProductEntities>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,17 +36,14 @@ class GroceryListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupDb()
+        setupAdapter()
         initListener()
     }
 
     private fun initListener() = binding.run {
 
-        addGroceryBtn.isEnabled = true
-        addGroceryBtn.alpha = 1f
-
-//        etProductName.setText(db.Dao().getGrocery()[0].productName)
-//        etQuantity.setText(db.Dao().getGrocery()[0].price)
 
         addGroceryBtn.setOnClickListener {
             product.clear()
@@ -49,27 +52,18 @@ class GroceryListFragment : Fragment() {
                     ProductEntities(
                         storeName = data.storeName,
                         productName = data.productName,
-                        price = data.price
+                        price = data.price,
+                        quantity = data.quantity
                     )
                 )
             }
             db.Dao().insertProduct(product.toList())
             Utils.successToast(requireActivity(), "Added Successfully")
             findNavController().navigate(R.id.allProductFragment)
+            (activity as MainActivity).selectProductTab(4)
         }
 
         llAddAnotherProduct.setOnClickListener{
-//            product.clear()
-//            db.Dao().getGrocery().mapIndexed { index, data ->
-//                product.add(
-//                    ProductEntities(
-//                        storeName = data.storeName,
-//                        productName = data.productName,
-//                        price = data.price
-//                    )
-//                )
-//            }
-//            db.Dao().insertProduct(product.toList())
             findNavController().navigate(R.id.productFragment)
             (activity as MainActivity).selectProductTab(0)
 
@@ -77,10 +71,9 @@ class GroceryListFragment : Fragment() {
 
         llEraseProduct.setOnClickListener {
             product.clear()
-            etProductName.setText("")
-            etQuantity.setText("")
-            addGroceryBtn.isEnabled = false
-            addGroceryBtn.alpha = 0.1f
+//            etProductName.setText("")
+//            etQuantity.setText("")
+
         }
     }
 
@@ -90,5 +83,11 @@ class GroceryListFragment : Fragment() {
             AppDatabase::class.java, Constant.GROCERY
         ).fallbackToDestructiveMigration()
             .allowMainThreadQueries().build()
+    }
+
+    private fun setupAdapter() {
+        groceryListAdapter = GroceryListAdapter(requireActivity())
+        groceryListAdapter.updateData(db.Dao().getGrocery() as ArrayList<GroceryEntities>)
+        binding.rvGroceryList.adapter = groceryListAdapter
     }
 }

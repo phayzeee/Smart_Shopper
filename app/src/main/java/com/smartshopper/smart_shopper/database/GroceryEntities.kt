@@ -13,4 +13,5 @@ data class GroceryEntities(
     @ColumnInfo(name = "storeName") var storeName: String? = null,
     @ColumnInfo(name = "productName") var productName: String? = null,
     @ColumnInfo(name = "price") var price: String? = null,
+    @ColumnInfo(name = "quantity") var quantity: String? = null,
 ) : Parcelable

@@ -3,47 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/light_bg_color"
     android:orientation="vertical"
     android:paddingHorizontal="15dp"
     android:paddingTop="23dp"
     tools:context=".ui.fragment.ProductFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Product"
-        android:textColor="@color/black"
-        android:textSize="15sp" />
-
-    <EditText
-        android:id="@+id/et_product_name"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/rouned_stroke"
-        android:hint="Enter Product Name"
-        android:inputType="textAutoComplete"
-        android:paddingStart="12dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Quantity"
-        android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:id="@+id/rv_grocery_list"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/row_grocery_list"
+        tools:itemCount="2"
+        android:orientation="vertical"
+        />
 
-    <EditText
-        android:id="@+id/et_quantity"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/rouned_stroke"
-        android:hint="Enter Quantity"
-        android:inputType="textAutoComplete"
-        android:paddingStart="12dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"

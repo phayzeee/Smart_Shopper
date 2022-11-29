@@ -15,6 +15,7 @@ import com.smartshopper.smart_shopper.database.GroceryEntities
 import com.smartshopper.smart_shopper.databinding.FragmentProductBinding
 import com.smartshopper.smart_shopper.model.Product
 import com.smartshopper.smart_shopper.model.Store
+import com.smartshopper.smart_shopper.ui.activity.MainActivity
 import com.smartshopper.smart_shopper.utils.Constant
 import com.smartshopper.smart_shopper.utils.Utils
 
@@ -55,9 +56,7 @@ class ProductFragment : Fragment() {
 
                 Utils.successToast(requireActivity(), "Added to Grocery List")
                 findNavController().navigate(com.smartshopper.smart_shopper.R.id.groceryListFragment)
-//                val tabLayout = findViewById(R.id.tabs) as TabLayout
-//                val tab = tabLayout.getTabAt(someIndex)
-//                tab!!.select()
+                (activity as MainActivity).selectProductTab(3)
             }
         }
     }

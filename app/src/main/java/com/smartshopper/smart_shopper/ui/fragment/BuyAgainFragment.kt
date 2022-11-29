@@ -10,9 +10,11 @@ import androidx.room.Room
 import com.smartshopper.smart_shopper.R
 import com.smartshopper.smart_shopper.adapter.PreviousGroceryAdapter
 import com.smartshopper.smart_shopper.database.AppDatabase
+import com.smartshopper.smart_shopper.database.GroceryEntities
 import com.smartshopper.smart_shopper.database.ProductEntities
 import com.smartshopper.smart_shopper.databinding.FragmentBuyAgainBinding
 import com.smartshopper.smart_shopper.model.GroceryDate
+import com.smartshopper.smart_shopper.ui.activity.MainActivity
 import com.smartshopper.smart_shopper.utils.Constant
 import com.smartshopper.smart_shopper.utils.Utils
 
@@ -21,7 +23,7 @@ class BuyAgainFragment : Fragment() {
     lateinit var binding: FragmentBuyAgainBinding
     lateinit var db: AppDatabase
     lateinit var dateAdapter: PreviousGroceryAdapter
-    var product = ArrayList<ProductEntities>()
+    var priceOf = ""
     var dateList = ArrayList<GroceryDate>()
 
     override fun onCreateView(
@@ -52,38 +54,42 @@ class BuyAgainFragment : Fragment() {
                 0 -> {
                     tvHeadingDate.text = "8 Aug 2022"
                     etProductName.setText("Parsley")
-                    etQuantity.setText("$3")
+                    etQuantity.setText("2 pounds")
+                    priceOf = "$8"
                 }
                 1 -> {
                     tvHeadingDate.text = "20 Sep 2022"
                     etProductName.setText("Eggs")
-                    etQuantity.setText("$4")
+                    etQuantity.setText("3 pounds")
+                    priceOf = "$23"
                 }
                 2 -> {
                     tvHeadingDate.text = "3 Oct 2022"
                     etProductName.setText("Meat")
-                    etQuantity.setText("$6")
+                    etQuantity.setText("5 pounds")
+                    priceOf = "$15"
                 }
                 3 -> {
                     tvHeadingDate.text = "15 Nov 2022"
                     etProductName.setText("Milk")
-                    etQuantity.setText("$12")
+                    etQuantity.setText("4 pounds")
+                    priceOf = "$32"
                 }
             }
         }
 
         addGroceryBtn.setOnClickListener {
-            product.clear()
-            product.add(
-                ProductEntities(
+            val data=
+                GroceryEntities(
                     storeName = "Rooftop Mart",
                     productName = etProductName.text.toString(),
-                    price = etQuantity.text.toString()
+                    price = priceOf,
+                    quantity = etQuantity.text.toString()
                 )
-            )
-            db.Dao().insertProduct(product.toList())
+            db.Dao().insertGrocery(data)
             Utils.successToast(requireActivity(), "Added Successfully")
-            findNavController().navigate(R.id.allProductFragment)
+            findNavController().navigate(R.id.groceryListFragment)
+            (activity as MainActivity).selectProductTab(3)
         }
     }
 
