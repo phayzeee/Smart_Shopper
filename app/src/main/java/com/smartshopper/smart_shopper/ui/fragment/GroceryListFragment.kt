@@ -41,7 +41,7 @@ class GroceryListFragment : Fragment() {
         setupDb()
         setupAdapter()
         initListener()
-        groceryButton()
+//        groceryButton()
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -49,16 +49,20 @@ class GroceryListFragment : Fragment() {
 
 
         addGroceryBtn.setOnClickListener {
-            if (db.Dao().getGrocery().isNotEmpty()) {
-                addGroceryProduct()
-                db.Dao().getGrocery().mapIndexed { index, groceryEntities ->
-                    db.Dao().deleteGrocery(groceryEntities)
-                }
-                setupAdapter()
-                Utils.successToast(requireActivity(), "Added Successfully")
-            } else {
-                Utils.errorToast(requireActivity(), "No Grocery Found")
-            }
+            findNavController().navigate(R.id.buyAgainFragment)
+            (activity as MainActivity).selectProductTab(2)
+//            if (db.Dao().getGrocery().isNotEmpty()) {
+//                findNavController().navigate(R.id.buyAgainFragment)
+//                (activity as MainActivity).selectProductTab(2)
+//                //addGroceryProduct()
+////                db.Dao().getGrocery().mapIndexed { index, groceryEntities ->
+////                    db.Dao().deleteGrocery(groceryEntities)
+////                }
+////                setupAdapter()
+//            //    Utils.successToast(requireActivity(), "Added Successfully")
+//            } else {
+//                Utils.errorToast(requireActivity(), "No Grocery Found")
+//            }
         }
 
         llAddAnotherProduct.setOnClickListener {
@@ -75,7 +79,7 @@ class GroceryListFragment : Fragment() {
             } else {
                 Utils.errorToast(requireActivity(), "No Grocery Found")
             }
-            groceryButton()
+//            groceryButton()
         }
     }
 
@@ -93,54 +97,54 @@ class GroceryListFragment : Fragment() {
         binding.rvGroceryList.adapter = groceryListAdapter
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
-    private fun addGroceryProduct() {
-        val data = groceryListAdapter.groceryItemList
-        grocery.clear()
-        product.clear()
-        grocery.addAll(data)
+//    @RequiresApi(Build.VERSION_CODES.N)
+//    private fun addGroceryProduct() {
+//        val data = groceryListAdapter.groceryItemList
+//        grocery.clear()
+//        product.clear()
+//        grocery.addAll(data)
+//
+//        for (i in 0 until data.size) {
+//            for (j in i until data.size) {
+//                if (data[i].productName == data[j].productName) {
+//                    if (data[i].price?.replace("$", "")?.toFloat()!! < data[j].price?.replace(
+//                            "$",
+//                            ""
+//                        )
+//                            ?.toFloat()!!
+//                    ) {
+//                        grocery.remove(data[j])
+//                    }
+//                }
+//            }
+//        }
+//
+//
+//        val filter = grocery.distinct()
+//        filter.mapIndexed { index, data ->
+//            product.add(
+//                ProductEntities(
+//                    storeName = data.storeName,
+//                    productName = data.productName,
+//                    price = data.price,
+//                    quantity = data.quantity
+//                )
+//            )
+//        }
+//        db.Dao().insertProduct(product.toList())
+//
+//        findNavController().navigate(R.id.buyAgainFragment)
+//        (activity as MainActivity).selectProductTab(2)
+//
+//    }
 
-        for (i in 0 until data.size) {
-            for (j in i until data.size) {
-                if (data[i].productName == data[j].productName) {
-                    if (data[i].price?.replace("$", "")?.toFloat()!! < data[j].price?.replace(
-                            "$",
-                            ""
-                        )
-                            ?.toFloat()!!
-                    ) {
-                        grocery.remove(data[j])
-                    }
-                }
-            }
-        }
-
-
-        val filter = grocery.distinct()
-        filter.mapIndexed { index, data ->
-            product.add(
-                ProductEntities(
-                    storeName = data.storeName,
-                    productName = data.productName,
-                    price = data.price,
-                    quantity = data.quantity
-                )
-            )
-        }
-        db.Dao().insertProduct(product.toList())
-
-        findNavController().navigate(R.id.allProductFragment)
-        (activity as MainActivity).selectProductTab(4)
-
-    }
-
-    private fun groceryButton(){
-        if(groceryListAdapter.groceryItemList.isNullOrEmpty()){
-            binding.addGroceryBtn.isEnabled = false
-            binding.addGroceryBtn.alpha = 0.2f
-        } else {
-            binding.addGroceryBtn.isEnabled = true
-            binding.addGroceryBtn.alpha = 1f
-        }
-    }
+//    private fun groceryButton(){
+//        if(groceryListAdapter.groceryItemList.isNullOrEmpty()){
+//            binding.addGroceryBtn.isEnabled = false
+//            binding.addGroceryBtn.alpha = 0.2f
+//        } else {
+//            binding.addGroceryBtn.isEnabled = true
+//            binding.addGroceryBtn.alpha = 1f
+//        }
+//    }
 }

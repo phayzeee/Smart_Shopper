@@ -10,7 +10,7 @@ interface Dao {
     fun getProducts(): List<ProductEntities>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertProduct(productEntities: List<ProductEntities>)
+    fun insertProduct(productEntities: ProductEntities)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertGrocery(productEntities: GroceryEntities)

@@ -23,9 +23,10 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/rouned_stroke"
         android:hint="Enter Store Name"
+        android:textColor="@color/black"
         android:inputType="textAutoComplete"
         android:paddingStart="12dp"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
     <Spinner
         android:id="@+id/storeNameSp"
@@ -34,6 +35,7 @@
         android:layout_height="45dp"
         android:layout_marginTop="5dp"
         android:inputType="textAutoComplete"
+        android:visibility="gone"
         android:paddingStart="12dp"/>
 
     <TextView
@@ -44,12 +46,25 @@
         android:textColor="@color/black"
         android:textSize="15sp" />
 
+    <EditText
+        android:id="@+id/productNameTv"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/rouned_stroke"
+        android:hint="Enter Product Name"
+        android:inputType="textAutoComplete"
+        android:textColor="@color/black"
+        android:paddingStart="12dp"
+        android:visibility="visible"/>
+
     <Spinner
         android:id="@+id/productNameSp"
         android:background="@drawable/rouned_stroke"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="5dp"
+        android:visibility="gone"
         android:inputType="textAutoComplete"
         android:paddingStart="12dp"/>
 
@@ -70,7 +85,6 @@
         android:hint="Enter Price"
         android:inputType="text"
         android:paddingStart="12dp"
-        android:enabled="false"
         android:textColor="@color/black"/>
 
 

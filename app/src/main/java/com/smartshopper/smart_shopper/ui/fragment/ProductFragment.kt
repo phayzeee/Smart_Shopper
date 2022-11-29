@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import com.smartshopper.smart_shopper.database.AppDatabase
 import com.smartshopper.smart_shopper.database.GroceryEntities
+import com.smartshopper.smart_shopper.database.ProductEntities
 import com.smartshopper.smart_shopper.databinding.FragmentProductBinding
 import com.smartshopper.smart_shopper.model.Product
 import com.smartshopper.smart_shopper.model.Store
@@ -35,9 +36,9 @@ class ProductFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setData()
+      //  setData()
         setupDb()
-        setupSpinner()
+       // setupSpinner()
         initListener()
     }
 
@@ -45,13 +46,15 @@ class ProductFragment : Fragment() {
         addGroceryBtn.setOnClickListener {
             if (validation()) {
                 val data = GroceryEntities(
-                    storeName = storeNameSp.selectedItem.toString(),
-                    productName = productNameSp.selectedItem.toString(),
-                    price = priceTv.text.toString()
+                    storeName = storeNameTv.text.toString(),
+                    productName = productNameTv.text.toString(),
+                    price = "$" + priceTv.text.toString()
                 )
                 db.Dao().insertGrocery(data)
-                setupSpinner()
-                setupProductSp("")
+//                setupSpinner()
+//                setupProductSp("")
+                storeNameTv.setText("")
+                productNameTv.setText("")
                 priceTv.setText("")
 
                 Utils.successToast(requireActivity(), "Added to Grocery List")
@@ -61,8 +64,18 @@ class ProductFragment : Fragment() {
         }
 
         addMoreBtn.setOnClickListener {
-            setupSpinner()
-            setupProductSp("")
+//            setupSpinner()
+//            setupProductSp("")
+            if(validation()){
+                val prodData = ProductEntities(
+                    storeName = storeNameTv.text.toString(),
+                    productName = productNameTv.text.toString(),
+                    price = "$" + priceTv.text.toString()
+                )
+                db.Dao().insertProduct(prodData)
+            }
+            storeNameTv.setText("")
+            productNameTv.setText("")
             priceTv.setText("")
         }
     }

@@ -138,7 +138,7 @@ class DealsFragment : Fragment() {
         val product3= arrayListOf(
             ProductDeal("LEGO TOY Complete set", "$50.1","1 Dec - 10 Dec"),
         )
-        dealsList.add(Deals("Target'", product3))
+        dealsList.add(Deals("Target", product3))
         val product4 = arrayListOf(
             ProductDeal("Mazola Corn Oil 2 cane", "$7","2 Dec - 4 Dec"),
             ProductDeal("Dave's Killer Bread and 3 packet eggs", "$10","5 Dec - 30 Dec"),
