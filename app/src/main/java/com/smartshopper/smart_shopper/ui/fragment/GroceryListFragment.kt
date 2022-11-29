@@ -71,6 +71,13 @@ class GroceryListFragment : Fragment() {
 
         llEraseProduct.setOnClickListener {
             product.clear()
+            if(db.Dao().getGrocery().isNotEmpty()){
+                db.Dao().deleteGrocery(db.Dao().getGrocery()[db.Dao().getGrocery().lastIndex])
+                setupAdapter()
+            }else{
+                Utils.errorToast(requireActivity(),"No Grocery Found")
+            }
+
 //            etProductName.setText("")
 //            etQuantity.setText("")
 
