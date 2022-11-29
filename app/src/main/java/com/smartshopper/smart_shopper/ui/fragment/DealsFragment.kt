@@ -128,23 +128,59 @@ class DealsFragment : Fragment() {
             ProductDeal(" 4 Coca-Cola Soda Pop Classic", "$15.6","2 Dec - 5 Dec"),
             ProductDeal("1 Lobster & 2Crab", "$25.6","1 Dec - 10 Dec")
         )
-        dealsList.add(Deals("Albertsons", product1))
+        dealsList.add(Deals("Albertons", product1))
         val product2= arrayListOf(
             ProductDeal("10 Dinner Rolls", "$5.49","1 jan 23 - 10 jan 23"),
             ProductDeal("2 Bread", "$3","1 jan 23 - 20 jan 23"),
             ProductDeal("3 Vanilma  Cupcakes", "$8","1 Dec - 10 Dec")
         )
-        dealsList.add(Deals("Ahold Delhaize", product2))
-        val product4= arrayListOf(
+        dealsList.add(Deals("Safeway", product2))
+        val product3= arrayListOf(
             ProductDeal("LEGO TOY Complete set", "$50.1","1 Dec - 10 Dec"),
         )
-        dealsList.add(Deals("Bashas'", product4))
+        dealsList.add(Deals("Target'", product3))
+        val product4 = arrayListOf(
+            ProductDeal("Mazola Corn Oil 2 cane", "$7","2 Dec - 4 Dec"),
+            ProductDeal("Dave's Killer Bread and 3 packet eggs", "$10","5 Dec - 30 Dec"),
+            ProductDeal("Sevan Cupcakes 28 oz", "$2","1 feb 23 - 2 feb 23")
+        )
+        dealsList.add(Deals("Walmart", product4))
+
         val product5 = arrayListOf(
             ProductDeal("Mazola Corn Oil 2 cane", "$7","2 Dec - 4 Dec"),
             ProductDeal("Dave's Killer Bread and 3 packet eggs", "$10","5 Dec - 30 Dec"),
             ProductDeal("Sevan Cupcakes 28 oz", "$2","1 feb 23 - 2 feb 23")
         )
-        dealsList.add(Deals("Smart & Final'", product5))
+        dealsList.add(Deals("Bashas", product5))
+
+        val product6 = arrayListOf(
+            ProductDeal("Mazola Corn Oil 2 cane", "$7","2 Dec - 4 Dec"),
+            ProductDeal("Dave's Killer Bread and 3 packet eggs", "$10","5 Dec - 30 Dec"),
+            ProductDeal("Sevan Cupcakes 28 oz", "$2","1 feb 23 - 2 feb 23")
+        )
+        dealsList.add(Deals("Giant Eagle", product6))
+
+        val product7 = arrayListOf(
+            ProductDeal("Mazola Corn Oil 2 cane", "$7","2 Dec - 4 Dec"),
+            ProductDeal("Dave's Killer Bread and 3 packet eggs", "$10","5 Dec - 30 Dec"),
+            ProductDeal("Sevan Cupcakes 28 oz", "$2","1 feb 23 - 2 feb 23")
+        )
+        dealsList.add(Deals("Aldi", product7))
+
+        val product8 = arrayListOf(
+            ProductDeal("Mazola Corn Oil 2 cane", "$7","2 Dec - 4 Dec"),
+            ProductDeal("Dave's Killer Bread and 3 packet eggs", "$10","5 Dec - 30 Dec"),
+            ProductDeal("Sevan Cupcakes 28 oz", "$2","1 feb 23 - 2 feb 23")
+        )
+        dealsList.add(Deals("Whole Foods", product8))
+
+        val product9 = arrayListOf(
+            ProductDeal("Mazola Corn Oil 2 cane", "$7","2 Dec - 4 Dec"),
+            ProductDeal("Dave's Killer Bread and 3 packet eggs", "$10","5 Dec - 30 Dec"),
+            ProductDeal("Sevan Cupcakes 28 oz", "$2","1 feb 23 - 2 feb 23")
+        )
+        dealsList.add(Deals("Trader Joes", product9))
+
     }
 
     private fun setupProductSp(store: String){

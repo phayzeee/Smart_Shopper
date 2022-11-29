@@ -104,31 +104,58 @@ class ProductFragment : Fragment() {
             Product("Coca-Cola Soda Pop Classic", "$5.6"),
             Product("Lobster & Crab", "$15.6")
         )
-        storeList.add(Store("Albertsons", product1))
+        storeList.add(Store("Albertons", product1))
         val product2= arrayListOf(
             Product("Dinner Rolls", "$1.49"),
             Product("Bread", "$2"),
             Product("Vanila Cupcakes", "$5")
         )
-        storeList.add(Store("Ahold Delhaize", product2))
+        storeList.add(Store("Safeway", product2))
         val product3= arrayListOf(
             Product("LEGO TOY", "$20.1"),
             Product("Lobster & Crab", "$10.6"),
             Product("Vanila Cupcakes", "$8")
         )
-        storeList.add(Store("Kroger", product3))
+        storeList.add(Store("Target", product3))
         val product4= arrayListOf(
             Product("LEGO TOY", "$20.1"),
             Product("Warmies Elephant Heatable Stuffed Animal", "$29.1")
         )
-        storeList.add(Store("Bashas'", product4))
+        storeList.add(Store("Walmart", product4))
         val product5 = arrayListOf(
             Product("Mazola Corn Oil", "$5"),
             Product("Dave's Killer Bread", "$6"),
             Product("Sevan Cupcakes 28 oz", "$10")
         )
-        storeList.add(Store("Smart & Final'", product5))
+        storeList.add(Store("Bashas", product5))
 
+        val product6 = arrayListOf(
+            Product("Mazola Corn Oil", "$5"),
+            Product("Dave's Killer Bread", "$6"),
+            Product("Sevan Cupcakes 28 oz", "$10")
+        )
+        storeList.add(Store("Giant Eagle", product6))
+
+        val product7 = arrayListOf(
+            Product("Mazola Corn Oil", "$5"),
+            Product("Dave's Killer Bread", "$6"),
+            Product("Sevan Cupcakes 28 oz", "$10")
+        )
+        storeList.add(Store("Aldi", product7))
+
+        val product8 = arrayListOf(
+            Product("Mazola Corn Oil", "$5"),
+            Product("Dave's Killer Bread", "$6"),
+            Product("Sevan Cupcakes 28 oz", "$10")
+        )
+        storeList.add(Store("Whole Foods", product8))
+
+        val product9 = arrayListOf(
+            Product("Mazola Corn Oil", "$5"),
+            Product("Dave's Killer Bread", "$6"),
+            Product("Sevan Cupcakes 28 oz", "$10")
+        )
+        storeList.add(Store("Trader Joes", product9))
     }
 
     private fun setupSpinner() {

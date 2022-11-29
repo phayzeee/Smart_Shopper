@@ -55,6 +55,7 @@ class GroceryListFragment : Fragment() {
                     db.Dao().deleteGrocery(groceryEntities)
                 }
                 setupAdapter()
+                Utils.successToast(requireActivity(), "Added Successfully")
             } else {
                 Utils.errorToast(requireActivity(), "No Grocery Found")
             }
