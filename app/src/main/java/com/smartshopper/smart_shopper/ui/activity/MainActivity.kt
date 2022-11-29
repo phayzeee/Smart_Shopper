@@ -89,4 +89,8 @@ class MainActivity : AppCompatActivity() {
         binding.name.text =
             db.Dao().getUser().name?.substring(0, 1)?.substringAfter("")?.substring(0, 1)
     }
+
+    fun selectProductTab(position : Int){
+        binding.tabs.selectTab(binding.tabs.getTabAt(position))
+    }
 }

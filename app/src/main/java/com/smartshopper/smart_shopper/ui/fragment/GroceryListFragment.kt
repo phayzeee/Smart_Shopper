@@ -11,6 +11,7 @@ import com.smartshopper.smart_shopper.R
 import com.smartshopper.smart_shopper.database.AppDatabase
 import com.smartshopper.smart_shopper.database.ProductEntities
 import com.smartshopper.smart_shopper.databinding.FragmentGroceryListBinding
+import com.smartshopper.smart_shopper.ui.activity.MainActivity
 import com.smartshopper.smart_shopper.utils.Constant
 import com.smartshopper.smart_shopper.utils.Utils
 
@@ -38,8 +39,8 @@ class GroceryListFragment : Fragment() {
         addGroceryBtn.isEnabled = true
         addGroceryBtn.alpha = 1f
 
-        etProductName.setText(db.Dao().getGrocery()[0].productName)
-        etQuantity.setText(db.Dao().getGrocery()[0].price)
+//        etProductName.setText(db.Dao().getGrocery()[0].productName)
+//        etQuantity.setText(db.Dao().getGrocery()[0].price)
 
         addGroceryBtn.setOnClickListener {
             product.clear()
@@ -58,18 +59,20 @@ class GroceryListFragment : Fragment() {
         }
 
         llAddAnotherProduct.setOnClickListener{
-            product.clear()
-            db.Dao().getGrocery().mapIndexed { index, data ->
-                product.add(
-                    ProductEntities(
-                        storeName = data.storeName,
-                        productName = data.productName,
-                        price = data.price
-                    )
-                )
-            }
-            db.Dao().insertProduct(product.toList())
+//            product.clear()
+//            db.Dao().getGrocery().mapIndexed { index, data ->
+//                product.add(
+//                    ProductEntities(
+//                        storeName = data.storeName,
+//                        productName = data.productName,
+//                        price = data.price
+//                    )
+//                )
+//            }
+//            db.Dao().insertProduct(product.toList())
             findNavController().navigate(R.id.productFragment)
+            (activity as MainActivity).selectProductTab(0)
+
         }
 
         llEraseProduct.setOnClickListener {
