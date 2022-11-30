@@ -92,7 +92,7 @@
             android:layout_marginStart="80dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="80dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/addGroceryBtn"
@@ -106,7 +106,31 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/showSuggestionBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="3dp"
+            android:layout_marginTop="10dp"
+            android:text="Show Suggestion"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rv_filter_prod"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/list_row"
+            android:layout_marginTop="10dp"
+            tools:itemCount="2"
+            android:orientation="vertical"
+            android:visibility="gone"
+            />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>
