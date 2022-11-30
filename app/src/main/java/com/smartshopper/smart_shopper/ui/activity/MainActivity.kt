@@ -86,11 +86,17 @@ class MainActivity : AppCompatActivity() {
     fun showName() {
         binding.name.isVisible = true
         binding.starImg.isVisible = false
-        binding.name.text =
-            db.Dao().getUser().name?.substring(0, 1)?.substringAfter(" ")?.substring(0, 1)
+        if (db.Dao().getUser().name?.trim()?.length!! > 1) {
+            binding.name.text =
+                db.Dao().getUser().name?.substring(0, 1)?.substringAfter(" ")?.substring(0, 1)
+        } else {
+            binding.name.text =
+                db.Dao().getUser().name
+        }
+
     }
 
-    fun selectProductTab(position : Int){
+    fun selectProductTab(position: Int) {
         binding.tabs.selectTab(binding.tabs.getTabAt(position))
     }
 }
