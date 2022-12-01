@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import com.smartshopper.smart_shopper.R
+import com.smartshopper.smart_shopper.adapter.FinalizeAdapter
 import com.smartshopper.smart_shopper.adapter.GroceryListAdapter
 import com.smartshopper.smart_shopper.adapter.SuggestionAdapter
 import com.smartshopper.smart_shopper.database.AppDatabase
@@ -51,9 +52,11 @@ class GroceryListFragment : Fragment() {
 
 
         addGroceryBtn.setOnClickListener {
-            findNavController().navigate(R.id.buyAgainFragment)
-            (activity as MainActivity).selectProductTab(2)
-
+            if (db.Dao().getGrocery().isNotEmpty()) {
+                finalizeBtnSetup()
+            } else {
+                Utils.errorToast(requireActivity(), "No Grocery Found")
+            }
         }
 
         llAddAnotherProduct.setOnClickListener {
@@ -127,47 +130,46 @@ class GroceryListFragment : Fragment() {
         for (i in 0 until data.size) {
             for (j in i until data.size) {
                 if (data[i].productName == data[j].productName) {
-                    if (data[i].price?.replace("$", "")?.toFloat()!! < data[j].price?.replace(
-                            "$",
-                            ""
-                        )
-                            ?.toFloat()!!
-                    ) {
+                    if (data[i].price?.replace("$", "")?.toFloat()!! > data[j].price?.replace("$", "")?.toFloat()!!)
+                    {
+                        grocery.remove(data[i])
+                    }
+                    else if (data[i].price?.replace("$", "")?.toFloat()!! < data[j].price?.replace("$", "")?.toFloat()!!){
                         grocery.remove(data[j])
                     }
                 }
             }
         }
-
-
-//        val filter = grocery.distinct()
-//        filter.mapIndexed { index, data ->
-//            product.add(
-//                ProductEntities(
-//                    storeName = data.storeName,
-//                    productName = data.productName,
-//                    price = data.price,
-//                    quantity = data.quantity
-//                )
-//            )
-//        }
         val adapter = SuggestionAdapter(requireActivity())
         adapter.updateData(grocery)
         binding.rvFilterProd.adapter = adapter
         binding.rvFilterProd.isVisible = true
-
-//        findNavController().navigate(R.id.buyAgainFragment)
-//        (activity as MainActivity).selectProductTab(2)
-
     }
 
-//    private fun groceryButton(){
-//        if(groceryListAdapter.groceryItemList.isNullOrEmpty()){
-//            binding.addGroceryBtn.isEnabled = false
-//            binding.addGroceryBtn.alpha = 0.2f
-//        } else {
-//            binding.addGroceryBtn.isEnabled = true
-//            binding.addGroceryBtn.alpha = 1f
-//        }
-//    }
+    private fun finalizeBtnSetup(){
+            val data = groceryListAdapter.groceryItemList
+            grocery.clear()
+            product.clear()
+            grocery.addAll(data.distinct())
+
+            for (i in 0 until data.size) {
+                for (j in i until data.size) {
+                    if (data[i].productName == data[j].productName) {
+                        if (data[i].price?.replace("$", "")?.toFloat()!! > data[j].price?.replace("$", "")?.toFloat()!!)
+                        {
+                            grocery.remove(data[i])
+                        }
+                    }
+                }
+            }
+
+
+        val adapter = FinalizeAdapter(requireActivity())
+        adapter.updateData(grocery)
+        binding.rvFinalizeBtn.adapter = adapter
+        binding.rvFinalizeBtn.isVisible = true
+    }
+
+
+
 }
